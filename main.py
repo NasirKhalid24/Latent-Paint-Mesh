@@ -1,3 +1,4 @@
+import os
 import torch
 import random
 import imageio
@@ -74,7 +75,7 @@ def main():
     mesh_tensor = load_obj(MESH, device)
     stable_diffusion = StableDiffusion(device, min_t=0.02, max_t=0.98, revision="fp16")
 
-    if MATERIAL is None:
+    if MATERIAL is None or not os.path.exists(MATERIAL):
         material = torch.randn(
             [64*SCALE // 1, 64*SCALE // 1, 4],
             device=device,
@@ -97,6 +98,7 @@ def main():
 
     optimizers = []
     optimizers.append(torch.optim.Adam([material], lr=1e-1))
+    os.makedirs("./output", exist_ok=True)
     if ITER_LOG > 0:
         video = Video("./output")
 

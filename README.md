@@ -13,8 +13,8 @@ Use the following Google Colab notebook to get started
 # Setup
 
 ```
-git clone
-cd 
+git clone https://github.com/NasirKhalid24/Latent-Paint-Mesh.git
+cd Latent-Paint-Mesh
 pip install -r requirements.txt
 
 # Create a TOKEN file with your huggingface token from https://huggingface.co/settings/tokens
