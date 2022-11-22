@@ -1,0 +1,13 @@
+diffusers
+PyGLM
+imageio
+matplotlib
+argparse
+numpy
+nvdiffrast @ git+https://github.com/NVlabs/nvdiffrast.git@78528e683210dfaa1be57e3c65aa37d3b36c6644
+PyGLM
+resize_right
+torch
+torchvision
+tqdm
+transformers
