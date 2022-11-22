@@ -107,7 +107,7 @@ class StableDiffusion(nn.Module):
                 noise_pred_uncond, noise_pred_text = noise_pred.chunk(2)
                 noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_text - noise_pred_uncond)
 
-        w = 1.0
+        w = (1- self.alphas[t])
 
         grad = (w * (noise_pred - noise)) / accum
 

@@ -31,6 +31,7 @@ def main():
     parser.add_argument('--mesh',       help='Path to .obj must have uv unwrapped', type=str)
     parser.add_argument('--material',   help='Path to starting material, if none will randomly initialize', type=str, default=None)
     parser.add_argument('--text',       help='Text prompt', type=str)
+    parser.add_argument('--lr',         help='Learning rate', type=float, default=0.01)
 
     parser.add_argument('--scale',      help='Factor by which to scale up 64x64 texture map', type=int, default=2)
     parser.add_argument('--log',        help='Log every x epochs, set to -1 to disable logging (much faster)', type=int, default=-1)
@@ -51,8 +52,8 @@ def main():
     parser.add_argument('--colab',      help='Enable for google colab logging', action='store_true')
     parser.add_argument('--prompt_aug', help='Prompt augmentatio (side, back)', action='store_true')
 
-    parser.add_argument('--epochs',     help='How many iterations', type=int, default=1000)
-    parser.add_argument('--guidance',   help='Guidance scale from ', type=float, default=100.)
+    parser.add_argument('--epochs',     help='How many iterations to run for', type=int, default=2500)
+    parser.add_argument('--guidance',   help=' Guidance scale for cfg', type=float, default=100.)
 
     args = vars(parser.parse_args())
 
@@ -97,7 +98,7 @@ def main():
     ]
 
     optimizers = []
-    optimizers.append(torch.optim.Adam([material], lr=1e-1))
+    optimizers.append(torch.optim.Adam([material], lr=args["lr"]))
     os.makedirs("./output", exist_ok=True)
     if ITER_LOG > 0:
         video = Video("./output")
@@ -165,7 +166,7 @@ def main():
                     torch.tensor(log_mvp.T, device=mesh_tensor["v"].device)
                 )[None, ...]
                 
-                rast_out, rast_out_db = dr.rasterize(glctx, points, mesh_tensor["f"], resolution=[512, 512])
+                rast_out, _ = dr.rasterize(glctx, points, mesh_tensor["f"], resolution=[512, 512])
                 texc, _ = dr.interpolate(mesh_tensor["uv"][None, ...], rast_out, mesh_tensor["f_uv"])
                 log_color = dr.texture(
                     dec_tex,
