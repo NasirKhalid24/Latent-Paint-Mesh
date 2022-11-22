@@ -8,7 +8,7 @@ Use Stable Diffusion to create textures for meshes
 
 # Quickstart
 
-Use the following ![Google Colab notebook](https://colab.research.google.com/drive/1JRjTCRX0FSZBAufEVLAyp0TP0EbGuupP?usp=sharing) to get started
+Use the following [Google Colab notebook](https://colab.research.google.com/drive/1JRjTCRX0FSZBAufEVLAyp0TP0EbGuupP?usp=sharing) to get started
 
 # Setup
 
