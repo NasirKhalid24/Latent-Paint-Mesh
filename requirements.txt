@@ -12,4 +12,5 @@ resize_right
 torch
 torchvision
 tqdm
+empatches
 transformers

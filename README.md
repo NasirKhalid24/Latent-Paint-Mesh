@@ -53,6 +53,7 @@ python main.py --mesh data/blub/blub_triangulated.obj --text "Goldfish" --epochs
   --offset             Offset mesh from center
   --colab              Enable for google colab logging
   --prompt_aug         Prompt augmentatio (side, back)
+  --auto_cam           Automatically calculate camera params
   --epochs EPOCHS      How many iterations to run for
-  --guidance GUIDANCE  Guidance scale for cfg
+  --guidance GUIDANCE  Guidance scale for cfg (0 to 1)
 ```
