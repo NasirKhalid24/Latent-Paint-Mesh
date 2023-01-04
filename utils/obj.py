@@ -113,7 +113,7 @@ def write_obj(folder, mesh, diffuse_texture):
     with open(mtl_file, "w") as f:
         f.write('newmtl defaultMat\n')
         f.write('bsdf   %s\n' % "diffuse")
-        f.write('map_kd texture_kd.png\n')
+        f.write('map_Kd texture_kd.png\n')
         imageio.imwrite(os.path.join(folder, 'texture_kd.png'), np.clip(np.rint(diffuse_texture[0].permute(1, 2, 0).cpu().detach().clone().numpy() * 255.0), 0, 255).astype(np.uint8))
 
     print("Done exporting mesh")
